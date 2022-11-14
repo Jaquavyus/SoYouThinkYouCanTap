@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FourPlayerActivity">
+
+    <ImageButton
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:clickable="true"
+        app:srcCompat="@drawable/back" />
+
+    <ImageButton
+        android:id="@+id/startButton"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:layout_centerInParent="true"
+        android:clickable="true"
+        android:onClick="startGame"
+        android:scaleType="centerInside"
+        app:srcCompat="@drawable/onepersonicon" />
+
+    <ImageButton
+        android:id="@+id/restartButton"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:layout_centerInParent="true"
+        android:clickable="true"
+        android:onClick="restartGame"
+        android:scaleType="centerInside"
+        app:srcCompat="@drawable/onepersonicon"
+        android:visibility="gone" />
+
+    <ImageButton
+        android:id="@+id/playerOneButton"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:clickable="false"
+        android:onClick="countPlayerOneClick"
+        android:scaleType="centerInside"
+        app:srcCompat="@drawable/onepersonicon" />
+
+    <ImageButton
+        android:id="@+id/playerTwoButton"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:clickable="false"
+        android:onClick="countPlayerTwoClick"
+        android:rotation="180"
+        android:scaleType="centerInside"
+        app:srcCompat="@drawable/onepersonicon" />
+
+    <ImageButton
+        android:id="@+id/playerThreeButton"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:clickable="false"
+        android:onClick="countPlayerThreeClick"
+        android:rotation="90"
+        android:scaleType="centerInside"
+        app:srcCompat="@drawable/onepersonicon" />
+
+    <ImageButton
+        android:id="@+id/playerFourButton"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:clickable="false"
+        android:onClick="countPlayerFourClick"
+        android:rotation="270"
+        android:scaleType="centerInside"
+        app:srcCompat="@drawable/onepersonicon" />
+
+    <TextView
+        android:id="@+id/playerOneScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@id/playerOneButton"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
+    <TextView
+        android:id="@+id/playerTwoScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/playerTwoButton"
+        android:rotation="180"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
+    <TextView
+        android:id="@+id/playerThreeScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/playerThreeButton"
+        android:rotation="90"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
+    <TextView
+        android:id="@+id/playerFourScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@id/playerFourButton"
+        android:rotation="270"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
+    <TextView
+        android:id="@+id/playerOneTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/playerOneScore"
+        android:layout_centerHorizontal="true"
+        android:text="3"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/playerTwoTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/playerTwoScore"
+        android:rotation="180"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/playerThreeTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/playerThreeScore"
+        android:rotation="90"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/playerFourTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@id/playerFourScore"
+        android:rotation="270"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:id="@+id/highscoreInputBox"
+        android:visibility="gone"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="@color/teal_200"
+        tools:context=".FourPlayerActivity">
+
+        <TextView
+            android:id="@+id/highscoreButtonText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/editTextHighscorer"
+            android:layout_centerHorizontal="true"
+            android:text="HIGHSCORE!\nEnter name of highscorer:"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+        <EditText
+            android:id="@+id/editTextHighscorer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:textAlignment="center"
+            android:inputType="textPersonName"
+            android:text=""
+            android:hint="Name of highscorer"
+            android:autofillHints="Name of highscorer" />
+
+        <Button
+            android:id="@+id/submitHighscorerButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/editTextHighscorer"
+            android:text="Submit"
+            android:onClick="submitHighscore" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

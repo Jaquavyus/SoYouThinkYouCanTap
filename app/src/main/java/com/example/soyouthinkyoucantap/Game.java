@@ -1,0 +1,138 @@
+package com.example.soyouthinkyoucantap;
+
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class Game extends AppCompatActivity
+{
+    static int highscore = 0;
+    private static String highscorer = "";
+
+    public static void countClick(Player player, TextView score)
+    {
+        player.addPointToScore();
+        score.setText("" + player.getScore());
+    }
+
+    public static String victorOrLoser(Player player, Player opponentOne)
+    {
+        String victor = "Victor!";
+        String loser = "Loser!";
+        String draw = "Draw!";
+        if (player.getScore() < opponentOne.getScore())
+            return loser;
+        else if (player.getScore() == opponentOne.getScore())
+            return draw;
+        else
+            return victor;
+    }
+    public static String victorOrLoser(Player player, Player opponentOne, Player opponentTwo)
+    {
+        String victor = "Victor!";
+        String loser = "Loser!";
+        String draw = "Draw!";
+        if (player.getScore() < opponentOne.getScore() || player.getScore() < opponentTwo.getScore())
+            return loser;
+        else if (player.getScore() == opponentOne.getScore() || player.getScore() == opponentTwo.getScore())
+            return draw;
+        else
+            return victor;
+    }
+    public static String victorOrLoser(Player player, Player opponentOne, Player opponentTwo, Player opponentThree)
+    {
+        String victor = "Victor!";
+        String loser = "Loser!";
+        String draw = "Draw!";
+        if (player.getScore() < opponentOne.getScore() || player.getScore() < opponentTwo.getScore() || player.getScore() < opponentThree.getScore())
+            return loser;
+        else if (player.getScore() == opponentOne.getScore() || player.getScore() == opponentTwo.getScore() || player.getScore() == opponentThree.getScore())
+            return draw;
+        else
+            return victor;
+    }
+
+    public static void resetScores(Player playerOne, Player playerTwo, TextView scoreOne, TextView scoreTwo)
+    {
+        playerOne.setScore(0);
+        playerTwo.setScore(0);
+
+        scoreOne.setText("" + playerOne.getScore());
+        scoreTwo.setText("" + playerTwo.getScore());
+    }
+
+    public static void resetScores(Player playerOne, Player playerTwo, Player playerThree, TextView scoreOne, TextView scoreTwo, TextView scoreThree)
+    {
+        playerOne.setScore(0);
+        playerTwo.setScore(0);
+        playerThree.setScore(0);
+
+        scoreOne.setText("" + playerOne.getScore());
+        scoreTwo.setText("" + playerTwo.getScore());
+        scoreThree.setText("" + playerThree.getScore());
+    }
+
+    public static void resetScores(Player playerOne, Player playerTwo, Player playerThree, Player playerFour, TextView scoreOne, TextView scoreTwo, TextView scoreThree, TextView scoreFour)
+    {
+        playerOne.setScore(0);
+        playerTwo.setScore(0);
+        playerThree.setScore(0);
+        playerFour.setScore(0);
+
+        scoreOne.setText("" + playerOne.getScore());
+        scoreTwo.setText("" + playerTwo.getScore());
+        scoreThree.setText("" + playerThree.getScore());
+        scoreFour.setText("" + playerFour.getScore());
+    }
+
+    public static boolean wasHighscoreAchieved(Player playerOne, Player playerTwo, Player playerThree, Player playerFour)
+    {
+        boolean highscoreAchieved = false;
+        if(playerOne.getScore() > highscore) {
+            highscoreAchieved = true;
+        }
+        else {
+            if(playerTwo.getScore() > highscore) {
+                highscoreAchieved = true;
+            }
+            else {
+                if(playerThree.getScore() > highscore) {
+                    highscoreAchieved = true;
+                }
+                else {
+                    if(playerFour.getScore() > highscore) {
+                        highscoreAchieved = true;
+                    }
+                    else {
+                        highscoreAchieved = false;
+                    }
+                }
+            }
+        }
+        return highscoreAchieved;
+    }
+
+    public static String returnHighscoreAsString(Player playerOne, Player playerTwo, Player playerThree, Player playerFour)
+    {
+        int one = playerOne.getScore();
+        int two = playerTwo.getScore();
+        int three = playerThree.getScore();
+        int four = playerFour.getScore();
+        if(one >= two && one >= three && one >= four)
+            return String.valueOf(one);
+        else
+        if(two >= one && two >= three && two >= four)
+            return String.valueOf(two);
+        else
+        if(three >= one && three >= two && three >= four)
+            return String.valueOf(three);
+        else
+            return String.valueOf(four);
+    }
+}
