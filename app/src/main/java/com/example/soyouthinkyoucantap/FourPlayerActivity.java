@@ -1,8 +1,12 @@
 package com.example.soyouthinkyoucantap;
 
+import static com.example.soyouthinkyoucantap.MainActivity.mplayer;
+import static com.example.soyouthinkyoucantap.MainActivity.rand;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.Editable;
@@ -20,6 +24,7 @@ import android.widget.Toast;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Random;
 
 public class FourPlayerActivity extends AppCompatActivity {
     private ImageButton backButton;
@@ -119,12 +124,16 @@ public class FourPlayerActivity extends AppCompatActivity {
     }
 
     public void startGame(View view) {
+        mplayer.stop();
+        mplayer = MediaPlayer.create(FourPlayerActivity.this, R.raw.countdown);
+        mplayer.start();
         startButton.setVisibility(View.INVISIBLE);
         restartButton.setVisibility(View.INVISIBLE);
         playerOneTimer.setVisibility(View.VISIBLE);
         playerTwoTimer.setVisibility(View.VISIBLE);
         playerThreeTimer.setVisibility(View.VISIBLE);
         playerFourTimer.setVisibility(View.VISIBLE);
+
 
         new CountDownTimer(3000, 1000){
             public void onTick(long millisUntilFinished){
@@ -151,15 +160,21 @@ public class FourPlayerActivity extends AppCompatActivity {
                         counterTwo--;
                     }
                     public  void onFinish(){
+                        mplayer.stop();
+                        mplayer = MediaPlayer.create(FourPlayerActivity.this, (rand.nextInt(2) == 0) ? R.raw.slowmotion : R.raw.funkysuspense);
+                        mplayer.start();
                         disableClickers();
                         playerOneTimer.setText(Game.victorOrLoser(playerOne, playerTwo, playerThree, playerFour));
                         playerTwoTimer.setText(Game.victorOrLoser(playerTwo, playerOne, playerThree, playerFour));
                         playerThreeTimer.setText(Game.victorOrLoser(playerThree, playerOne, playerTwo, playerFour));
                         playerFourTimer.setText(Game.victorOrLoser(playerFour, playerOne, playerTwo, playerThree));
                         if(Game.wasHighscoreAchieved(playerOne, playerTwo, playerThree, playerFour)) {
+                            mplayer = MediaPlayer.create(FourPlayerActivity.this, R.raw.highscore);
+                            mplayer.start();
                             restartButton.setClickable(false);
                             highscoreInputBox.setVisibility(View.VISIBLE);
                         }
+                        mplayer = MediaPlayer.create(FourPlayerActivity.this, R.raw.slowmotion);
                         restartButton.setVisibility(View.VISIBLE);
                     }
                 }.start();
@@ -179,6 +194,20 @@ public class FourPlayerActivity extends AppCompatActivity {
         playerTwoButton.setClickable(true);
         playerThreeButton.setClickable(true);
         playerFourButton.setClickable(true);
+        mplayer.stop();
+        Random rand = new Random();
+        int track = rand.nextInt(4);
+        switch(track)
+        {
+            case 0:
+                track = R.raw.dance;
+            case 1:
+                track = R.raw.epic;
+            case 2:
+                track = R.raw.extremeaction;
+        }
+        mplayer = MediaPlayer.create(FourPlayerActivity.this, track);
+        mplayer.start();
     }
 
     public void disableClickers() {

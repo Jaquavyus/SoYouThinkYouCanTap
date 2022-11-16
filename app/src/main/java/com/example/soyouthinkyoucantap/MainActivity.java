@@ -3,7 +3,9 @@ package com.example.soyouthinkyoucantap;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -14,6 +16,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Random;
+
 
 public class MainActivity extends AppCompatActivity {
     private ImageButton onePlayerButton;
@@ -22,12 +26,21 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton fourPlayerButton;
     private TextView highscore;
     private TextView highscorer;
-
+    public static MediaPlayer mplayer = new MediaPlayer();
+    public static Random rand = new Random();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
+
+        int val = rand.nextInt(2);
+
+        if(!mplayer.isPlaying())
+        {
+           mplayer = MediaPlayer.create(MainActivity.this, (rand.nextInt(2) == 0) ? R.raw.slowmotion : R.raw.funkysuspense);
+            mplayer.start();
+        }
 
         onePlayerButton = (ImageButton) findViewById(R.id.onePersonButton);
         onePlayerButton.setOnClickListener(new View.OnClickListener() {
