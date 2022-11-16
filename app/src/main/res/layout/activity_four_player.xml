@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#9ac6c5"
     tools:context=".FourPlayerActivity">
 
     <ImageButton
@@ -12,83 +13,88 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:clickable="true"
+        android:background="#00FFFFFF"
         app:srcCompat="@drawable/back" />
 
     <ImageButton
         android:id="@+id/startButton"
-        android:layout_width="150dp"
+        android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_centerInParent="true"
+        android:background="#00FFFFFF"
         android:clickable="true"
         android:onClick="startGame"
         android:scaleType="centerInside"
-        app:srcCompat="@drawable/onepersonicon" />
+        app:srcCompat="@drawable/start" />
 
     <ImageButton
         android:id="@+id/restartButton"
-        android:layout_width="150dp"
+        android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_centerInParent="true"
+        android:background="#00FFFFFF"
         android:clickable="true"
         android:onClick="restartGame"
         android:scaleType="centerInside"
-        app:srcCompat="@drawable/onepersonicon"
+        app:srcCompat="@drawable/restart"
         android:visibility="gone" />
 
     <ImageButton
         android:id="@+id/playerOneButton"
-        android:layout_width="150dp"
-        android:layout_height="100dp"
+        android:layout_width="140dp"
+        android:layout_height="78dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:clickable="false"
         android:onClick="countPlayerOneClick"
         android:scaleType="centerInside"
-        app:srcCompat="@drawable/onepersonicon" />
+        android:background="#00FFFFFF"
+        app:srcCompat="@drawable/blueclicker" />
 
     <ImageButton
         android:id="@+id/playerTwoButton"
-        android:layout_width="150dp"
-        android:layout_height="100dp"
+        android:layout_width="140dp"
+        android:layout_height="78dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:clickable="false"
         android:onClick="countPlayerTwoClick"
         android:rotation="180"
         android:scaleType="centerInside"
-        app:srcCompat="@drawable/onepersonicon" />
+        android:background="#00FFFFFF"
+        app:srcCompat="@drawable/greenclicker" />
 
     <ImageButton
         android:id="@+id/playerThreeButton"
-        android:layout_width="150dp"
-        android:layout_height="100dp"
+        android:layout_width="78dp"
+        android:layout_height="140dp"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:clickable="false"
         android:onClick="countPlayerThreeClick"
-        android:rotation="90"
         android:scaleType="centerInside"
-        app:srcCompat="@drawable/onepersonicon" />
+        android:background="#00FFFFFF"
+        app:srcCompat="@drawable/orangeclicker" />
 
     <ImageButton
         android:id="@+id/playerFourButton"
-        android:layout_width="150dp"
-        android:layout_height="100dp"
+        android:layout_width="78dp"
+        android:layout_height="140dp"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:clickable="false"
         android:onClick="countPlayerFourClick"
-        android:rotation="270"
         android:scaleType="centerInside"
-        app:srcCompat="@drawable/onepersonicon" />
+        android:background="#00FFFFFF"
+        app:srcCompat="@drawable/purpleclicker" />
 
     <TextView
         android:id="@+id/playerOneScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="0"
-        android:layout_centerHorizontal="true"
         android:layout_above="@id/playerOneButton"
+        android:layout_centerHorizontal="true"
+        android:text="0"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
     <TextView
@@ -109,6 +115,7 @@
         android:layout_centerVertical="true"
         android:layout_toRightOf="@id/playerThreeButton"
         android:rotation="90"
+        android:layout_marginLeft="10dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
     <TextView
@@ -119,6 +126,7 @@
         android:layout_centerVertical="true"
         android:layout_toLeftOf="@id/playerFourButton"
         android:rotation="270"
+        android:layout_marginRight="10dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
     <TextView
@@ -144,33 +152,37 @@
 
     <TextView
         android:id="@+id/playerThreeTimer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="3"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
         android:layout_centerVertical="true"
+        android:layout_marginLeft="5dp"
         android:layout_toRightOf="@id/playerThreeScore"
+        android:gravity="bottom|center_horizontal"
         android:rotation="90"
+        android:text="3"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:visibility="gone" />
 
     <TextView
         android:id="@+id/playerFourTimer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
         android:text="3"
         android:layout_centerVertical="true"
         android:layout_toLeftOf="@id/playerFourScore"
+        android:gravity="bottom|center_horizontal"
         android:rotation="270"
+        android:layout_marginRight="5dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:visibility="gone" />
 
     <RelativeLayout
         android:id="@+id/highscoreInputBox"
         android:visibility="gone"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
+        android:layout_width="200dp"
+        android:layout_height="150dp"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
+        android:layout_above="@id/playerOneTimer"
         android:background="@color/teal_200"
         tools:context=".FourPlayerActivity">
 
