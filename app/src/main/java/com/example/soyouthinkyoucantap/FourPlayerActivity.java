@@ -22,8 +22,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Random;
 
 public class FourPlayerActivity extends AppCompatActivity {
@@ -168,6 +171,7 @@ public class FourPlayerActivity extends AppCompatActivity {
                         playerTwoTimer.setText(Game.victorOrLoser(playerTwo, playerOne, playerThree, playerFour));
                         playerThreeTimer.setText(Game.victorOrLoser(playerThree, playerOne, playerTwo, playerFour));
                         playerFourTimer.setText(Game.victorOrLoser(playerFour, playerOne, playerTwo, playerThree));
+                        updateHighscoreFromDocument();
                         if(Game.wasHighscoreAchieved(playerOne, playerTwo, playerThree, playerFour)) {
                             mplayer = MediaPlayer.create(FourPlayerActivity.this, R.raw.highscore);
                             mplayer.start();
@@ -233,8 +237,22 @@ public class FourPlayerActivity extends AppCompatActivity {
         Game.countClick(playerFour, playerFourScore);
     }
 
+    public void updateHighscoreFromDocument() {
+        FileInputStream fis = null;
+        try {
+            fis = openFileInput("highscore.txt");
+            InputStreamReader isr = new InputStreamReader(fis);
+            BufferedReader br = new BufferedReader(isr);
+            StringBuilder sb = new StringBuilder();
+            Game.setHighscore(Integer.valueOf(br.readLine()));
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Failed to load highscore");
+        }
+    }
+
     public void submitHighscore(View view) {
-        String highscore = Game.returnHighscoreAsString(playerOne, playerTwo, playerThree, playerFour);
+        String highscore = Game.returnNewHighscoreAsString(playerOne, playerTwo, playerThree, playerFour);
         submitHighscoreValue(highscore);
         submitHighscorerName();
         highscoreInputBox.setVisibility(View.GONE);

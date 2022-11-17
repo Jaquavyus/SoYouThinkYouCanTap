@@ -4,16 +4,22 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Game extends AppCompatActivity
 {
-    static int highscore = 0;
-    private static String highscorer = "";
+    private static int highscore = 0;
+
+    public static void setHighscore(int highscore) {
+        Game.highscore = highscore;
+    }
 
     public static void countClick(Player player, TextView score)
     {
@@ -58,6 +64,13 @@ public class Game extends AppCompatActivity
             return victor;
     }
 
+    public static void resetScores(Player playerOne, TextView scoreOne)
+    {
+        playerOne.setScore(0);
+
+        scoreOne.setText("" + playerOne.getScore());
+    }
+
     public static void resetScores(Player playerOne, Player playerTwo, TextView scoreOne, TextView scoreTwo)
     {
         playerOne.setScore(0);
@@ -91,6 +104,57 @@ public class Game extends AppCompatActivity
         scoreFour.setText("" + playerFour.getScore());
     }
 
+    public static boolean wasHighscoreAchieved(Player playerOne)
+    {
+        boolean highscoreAchieved = false;
+        if(playerOne.getScore() > highscore) {
+            highscoreAchieved = true;
+        }
+        else {
+            highscoreAchieved = false;
+        }
+        return highscoreAchieved;
+    }
+
+    public static boolean wasHighscoreAchieved(Player playerOne, Player playerTwo)
+    {
+        boolean highscoreAchieved = false;
+        if(playerOne.getScore() > highscore) {
+            highscoreAchieved = true;
+        }
+        else {
+            if(playerTwo.getScore() > highscore) {
+                highscoreAchieved = true;
+            }
+            else {
+                highscoreAchieved = false;
+            }
+        }
+        return highscoreAchieved;
+    }
+
+    public static boolean wasHighscoreAchieved(Player playerOne, Player playerTwo, Player playerThree)
+    {
+        boolean highscoreAchieved = false;
+        if(playerOne.getScore() > highscore) {
+            highscoreAchieved = true;
+        }
+        else {
+            if(playerTwo.getScore() > highscore) {
+                highscoreAchieved = true;
+            }
+            else {
+                if(playerThree.getScore() > highscore) {
+                    highscoreAchieved = true;
+                }
+                else {
+                    highscoreAchieved = false;
+                }
+            }
+        }
+        return highscoreAchieved;
+    }
+
     public static boolean wasHighscoreAchieved(Player playerOne, Player playerTwo, Player playerThree, Player playerFour)
     {
         boolean highscoreAchieved = false;
@@ -118,7 +182,37 @@ public class Game extends AppCompatActivity
         return highscoreAchieved;
     }
 
-    public static String returnHighscoreAsString(Player playerOne, Player playerTwo, Player playerThree, Player playerFour)
+    public static String returnNewHighscoreAsString(Player playerOne)
+    {
+        int one = playerOne.getScore();
+        return String.valueOf(one);
+    }
+
+    public static String returnNewHighscoreAsString(Player playerOne, Player playerTwo)
+    {
+        int one = playerOne.getScore();
+        int two = playerTwo.getScore();
+        if(one >= two)
+            return String.valueOf(one);
+        else
+            return String.valueOf(two);
+    }
+
+    public static String returnNewHighscoreAsString(Player playerOne, Player playerTwo, Player playerThree)
+    {
+        int one = playerOne.getScore();
+        int two = playerTwo.getScore();
+        int three = playerThree.getScore();
+        if(one >= two && one >= three)
+            return String.valueOf(one);
+        else
+        if(two >= one && two >= three)
+            return String.valueOf(two);
+        else
+            return String.valueOf(three);
+    }
+
+    public static String returnNewHighscoreAsString(Player playerOne, Player playerTwo, Player playerThree, Player playerFour)
     {
         int one = playerOne.getScore();
         int two = playerTwo.getScore();
